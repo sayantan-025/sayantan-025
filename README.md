@@ -17,7 +17,7 @@
 ### 💡 About Me:
 - 🌱 I’m currently learning **Full Stack Web Development**
 - 📫 Reach me at **sayantanbera25@gmail.com**
-- ⚡ Fun fact: **Gaming fuels my coding energy 🎮**
+- ⚡ Fun fact: **Movies fuel my creative thinking 🎬**
 
 ---
 
