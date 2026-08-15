@@ -1,4 +1,4 @@
-<h1 align="center">Hi 👋, I'm Sayantan Bera</h1>
+<h1 align="center">Hi👋, I'm Sayantan Bera</h1>
 <h3 align="center">🚀 Full Stack Web Developer | Building ZenBlocks UI Library | React • Next.js</h3>
 
 <p align="center">
