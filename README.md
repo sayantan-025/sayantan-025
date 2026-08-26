@@ -1,5 +1,5 @@
 <h1 align="center">Hi👋 , I'm Sayantan Bera</h1>
-<h3 align="center">🚀 Full Stack Web Developer | Building ZenBlocks UI Library | React • Next.js</h3>
+<h3 align="center">🚀Full Stack Web Developer | Building ZenBlocks UI Library | React • Next.js</h3>
 
 <p align="center">
   <img src="https://i.pinimg.com/originals/e8/f4/53/e8f453469a3ec97ecd354df465d73913.gif" alt="coding" width="400"/>
