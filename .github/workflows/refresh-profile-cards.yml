@@ -20,7 +20,7 @@ jobs:
           python-version: "3.11"
       - name: Install font subsetting tools
         run: |
-          python -m pip install --upgrade pip fonttools brotli
+          python -m pip install --upgrade pip fonttools brotli cairosvg
       - name: Render SVG cards and refresh contribution data
         env:
           GH_TOKEN: ${{ github.token }}
