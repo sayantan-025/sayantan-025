@@ -147,5 +147,13 @@ def main():
     write("hero.svg",hero(d)); write("activity.svg",stats(d)); write("contributions.svg",graph(d))
     for i,link in enumerate(d.get("links",[])[:3]): write(f"link-{i+1}.svg",link_card(link,i))
     for i,r in enumerate(d.get("featured_repos",[])): write(f"repo-{i+1}.svg",repo_card(r,i))
+    if STATIC:
+        try:
+            import cairosvg
+            for svg_path in OUT.glob("*.svg"):
+                cairosvg.svg2png(url=str(svg_path), write_to=str(OUT / f"{svg_path.stem}-static.png"))
+            print("Wrote final-frame PNG previews alongside the static SVGs.")
+        except ImportError:
+            print("Install cairosvg to export PNG screenshots: pip install cairosvg")
     print("Rendered SVG cards to cards/")
 if __name__=="__main__": main()
