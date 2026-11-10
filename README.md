@@ -4,7 +4,9 @@
 </p>
 
 <p align="center">
-  <a href="https://sayantanbera.vercel.app/"><img src="cards/links.svg" alt="Portfolio, LinkedIn and email links" width="100%" /></a>
+  <a href="https://sayantanbera.vercel.app/"><img src="cards/link-1.svg" alt="Portfolio" width="32.5%" /></a>
+  <a href="https://linkedin.com/in/sayantan-bera-b11300202"><img src="cards/link-2.svg" alt="LinkedIn" width="32.5%" /></a>
+  <a href="mailto:sayantanbera25@gmail.com"><img src="cards/link-3.svg" alt="Email" width="32.5%" /></a>
 </p>
 
 <p align="center">
