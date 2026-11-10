@@ -100,47 +100,14 @@ def hero(d):
     s+=f'<text x="54" y="76" font-size="18" fill="{SAGE}" letter-spacing="4">HELLO, WORLD</text><text x="54" y="133" font-size="48" fill="{INK}">{esc(d.get("name","Sayantan Bera"))}</text><text x="56" y="174" font-size="19" fill="{INK}">{esc(d.get("tagline","Full Stack Web Developer"))}</text>{photo}'
     return s+end()
 
-def links_card(d):
-    links=d.get("links",[])[:3]; n=len(links); w=290; gap=25; start=(WIDTH-(n*w+(n-1)*gap))/2
-    s=svg_start("Links",.18,132)
-    for i,l in enumerate(links):
-        x=start+i*(w+gap); s+=f'<a xlink:href="{esc(l["url"])}"><rect x="{x}" y="20" width="{w}" height="92" rx="20" fill="{SURFACE}"/><text x="{x+w/2}" y="76" text-anchor="middle" font-size="22" fill="{BG}">{esc(l["label"])}</text></a>'
-    return s+end()
+def link_card(link, idx):
+    delay=.18+idx*.10
+    motion="" if STATIC else f"""
+      @keyframes rise {{from{{opacity:0;transform:translateY(14px)}}to{{opacity:1;transform:translateY(0)}}}}
+      .tile{{opacity:0;animation:rise .7s ease-out {delay}s forwards}}
+      @media(prefers-reduced-motion:reduce){{*{{animation:none!important;opacity:1!important;transform:none!important}}}}"""
+    css=font_css()
+    return f'''<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="300" height="132" viewBox="0 0 300 132">
+    <style>{css}{motion}text{{font-family:Amiamie,Arial,sans-serif}}</style>
+    <a xlink:href="{esc(link.get("url","#"))}"><g class="tile"><rect x="3" y="3" width="294" height="126" rx="22" fill="{SURFACE}"/><text x="150" y="76" text-anchor="middle" font-size="20" fill="{BG}">{esc(link.get("label","LINK"))}</text><text x="150" y="101" text-anchor="middle" font-size="11" fill="{GOLD}">OPEN ↗</text></g></a></svg>'''
 
-def stats(d):
-    c=d.get("contributions",{}); months=list(c.get("months",{}).items())[-12:]
-    vals=[v for _,v in months] or [0]; maxv=max(vals+[1]); s=svg_start("Contribution activity",.36,310)
-    s+=f'<text x="48" y="54" font-size="24" fill="{INK}">Contribution rhythm</text>'
-    metrics=[("LONGEST STREAK",c.get("longest_streak",0)),("ACTIVE DAYS",c.get("active_days",0)),("BUSIEST DAY",c.get("busiest_day","—"))]
-    for i,(label,value) in enumerate(metrics):
-        x=50+i*300; s+=f'<text x="{x}" y="94" font-size="12" fill="{SAGE}">{label}</text><text x="{x}" y="126" font-size="25" fill="{INK}">{esc(value)}</text>'
-    for i,(m,v) in enumerate(months):
-        x=55+i*70; h=95*v/maxv
-        s+=f'<rect x="{x}" y="{244-h:.1f}" width="38" height="{h:.1f}" rx="7" fill="{GOLD}"/><text x="{x+19}" y="267" text-anchor="middle" font-size="10" fill="{INK}">{m[5:]}</text>'
-    return s+end()
-
-def repo_card(repo, idx):
-    s=svg_start("Featured repository",.54+idx*.16,174)
-    s+=f'<text x="48" y="58" font-size="13" fill="{SAGE}" letter-spacing="3">FEATURED REPOSITORY</text><a xlink:href="{esc(repo.get("url","#"))}"><text x="48" y="101" font-size="30" fill="{INK}">{esc(repo.get("name","Project"))}</text></a><text x="48" y="132" font-size="16" fill="{INK}">{esc((repo.get("description") or "A project in progress")[:95])}</text><text x="850" y="100" font-size="17" text-anchor="end" fill="{GOLD}">★ {repo.get("stars",0)}</text>'
-    return s+end()
-
-def graph(d):
-    days=d.get("contributions",{}).get("days",[])
-    if not days: days=[{"date":(date.today()-timedelta(days=180-i)).isoformat(),"contributionCount":0} for i in range(181)]
-    days=days[-371:]; s=svg_start("Contribution graph",.9,180)
-    s+=f'<text x="48" y="42" font-size="20" fill="{INK}">A year in contributions</text>'
-    cell=13; gap=4; startx=52; starty=60
-    for i,d in enumerate(days):
-        col=i//7; row=i%7; v=d.get("contributionCount",0)
-        color=BG if v==0 else (SAGE if v<3 else GOLD if v<7 else SURFACE)
-        s+=f'<rect x="{startx+col*(cell+gap)}" y="{starty+row*(cell+gap)}" width="{cell}" height="{cell}" rx="3" fill="{color}"><title>{esc(d.get("date"))}: {v} contributions</title></rect>'
-    return s+end()
-
-def main():
-    d=refresh(load_data())
-    DATA.parent.mkdir(exist_ok=True); DATA.write_text(json.dumps(d,indent=2),encoding="utf-8")
-    write("hero.svg",hero(d)); write("links.svg",links_card(d)); write("activity.svg",stats(d))
-    for i,r in enumerate(d.get("featured_repos",[])): write(f"repo-{i+1}.svg",repo_card(r,i))
-    write("contributions.svg",graph(d))
-    print("Rendered SVG cards to cards/")
-if __name__=="__main__": main()
