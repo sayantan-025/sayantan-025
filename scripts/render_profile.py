@@ -13,7 +13,8 @@ from xml.sax.saxutils import escape
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "cards"
 DATA = ROOT / "data" / "profile.json"
-BG, SURFACE, SAGE, GOLD, INK = "#e5e5e0", "#393632", "#8b8b73", "#cfa355", "#393632"
+BG, SURFACE, SAGE, GOLD, INK = "#F3EBDD", "#20232A", "#315C9B", "#E7B94F", "#20232A"
+BLUE, RED = "#315C9B", "#C94C40"
 STATIC = os.getenv("STATIC", "0") == "1"
 WIDTH = 960
 
@@ -84,7 +85,7 @@ def svg_start(title, delay=0, height=220):
       .card-content {{opacity:0;animation:rise .8s cubic-bezier(.2,.7,.2,1) {delay}s forwards}}
       @media (prefers-reduced-motion:reduce) {{ *,*::before,*::after {{animation:none!important;transition:none!important;opacity:1!important;transform:none!important}} }}"""
     return f'''<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="{WIDTH}" height="{height}" viewBox="0 0 {WIDTH} {height}">
-    <style>{css} {motion} text{{font-family:Amiamie,Arial,sans-serif}} .muted{{fill:{BG};opacity:.68}}</style>
+    <style>{css} {motion} text{{font-family:Georgia,'Times New Roman',serif}} .muted{{fill:{BG};opacity:.68}}</style>
     <rect width="100%" height="100%" rx="28" fill="{BG}"/><rect x="2" y="2" width="956" height="{height-4}" rx="26" fill="none" stroke="{SAGE}" stroke-opacity=".45"/>
     <g class="card-content">'''
 def end(): return "</g></svg>"
@@ -93,11 +94,23 @@ def write(name, content):
     OUT.mkdir(exist_ok=True); (OUT/name).write_text(content,encoding="utf-8")
 
 def hero(d):
-    portrait=d.get("portrait")
-    photo=(f'<clipPath id="p"><circle cx="820" cy="112" r="66"/></clipPath><image x="754" y="46" width="132" height="132" preserveAspectRatio="xMidYMid slice" clip-path="url(#p)" xlink:href="{esc(portrait)}"/>' if portrait else
-        f'<circle cx="820" cy="112" r="66" fill="{SAGE}"/><text x="820" y="128" font-size="52" text-anchor="middle" fill="{BG}">SB</text>')
+    portrait = '''
+      <defs><clipPath id="portraitClip"><circle cx="814" cy="113" r="77"/></clipPath></defs>
+      <circle cx="814" cy="113" r="79" fill="#D9E1E8"/>
+      <g clip-path="url(#portraitClip)">
+        <rect x="730" y="30" width="170" height="170" fill="#D9E1E8"/>
+        <path d="M738 198 Q748 151 790 145 L838 145 Q883 151 894 198Z" fill="#315C9B"/>
+        <path d="M792 132 L792 154 Q814 173 837 153 L836 128Z" fill="#B97855"/>
+        <path d="M762 98 Q760 49 808 43 Q860 39 870 91 L861 135 Q850 164 814 166 Q777 161 765 130Z" fill="#B97855"/>
+        <path d="M760 94 Q754 45 797 35 Q843 20 870 65 Q879 79 872 106 L861 91 Q845 74 820 73 Q789 76 769 103Z" fill="#20232A"/>
+        <path d="M765 120 Q770 150 792 159 Q811 177 838 158 Q857 146 865 118 Q861 157 839 174 Q803 187 778 161 Q765 145 765 120Z" fill="#20232A"/>
+        <path d="M775 103 Q789 91 805 100 M824 100 Q841 91 854 103" fill="none" stroke="#20232A" stroke-width="5" stroke-linecap="round"/>
+        <g fill="none" stroke="#315C9B" stroke-width="5"><rect x="765" y="97" width="43" height="31" rx="11"/><rect x="820" y="97" width="43" height="31" rx="11"/><path d="M808 108 Q814 104 820 108 M765 108 L754 103 M863 108 L875 103"/></g>
+        <path d="M802 136 Q815 141 828 135" fill="none" stroke="#6C3D31" stroke-width="3" stroke-linecap="round"/>
+      </g><circle cx="814" cy="113" r="79" fill="none" stroke="#20232A" stroke-width="2"/>
+    '''
     s=svg_start("Hero",0,230)
-    s+=f'<text x="54" y="76" font-size="18" fill="{SAGE}" letter-spacing="4">HELLO, WORLD</text><text x="54" y="133" font-size="48" fill="{INK}">{esc(d.get("name","Sayantan Bera"))}</text><text x="56" y="174" font-size="19" fill="{INK}">{esc(d.get("tagline","Full Stack Web Developer"))}</text>{photo}'
+    s+=f'<text x="54" y="62" font-size="15" fill="{BLUE}" letter-spacing="4">HELLO, WORLD</text><text x="54" y="123" font-size="48" fill="{INK}">{esc(d.get("name","Sayantan Bera"))}</text><text x="56" y="164" font-size="18" fill="{INK}">{esc(d.get("tagline","Full Stack Web Developer"))}</text><path d="M56 188 H310" stroke="{RED}" stroke-width="5" stroke-linecap="round"/>{portrait}'
     return s+end()
 
 def link_card(link, idx):
@@ -108,7 +121,7 @@ def link_card(link, idx):
       @media(prefers-reduced-motion:reduce){{*{{animation:none!important;opacity:1!important;transform:none!important}}}}"""
     css=font_css()
     return f'''<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="300" height="132" viewBox="0 0 300 132">
-    <style>{css}{motion}text{{font-family:Amiamie,Arial,sans-serif}}</style>
+    <style>{css}{motion}text{{font-family:Georgia,'Times New Roman',serif}}</style>
     <a xlink:href="{esc(link.get("url","#"))}"><g class="tile"><rect x="3" y="3" width="294" height="126" rx="22" fill="{SURFACE}"/><text x="150" y="76" text-anchor="middle" font-size="20" fill="{BG}">{esc(link.get("label","LINK"))}</text><text x="150" y="101" text-anchor="middle" font-size="11" fill="{GOLD}">OPEN ↗</text></g></a></svg>'''
 
 
