@@ -1,19 +1,19 @@
 {
   "name": "Sayantan Bera",
-  "tagline": "Full Stack Web Developer \u00b7 Building ZenBlocks UI Library \u00b7 React / Next.js",
+  "tagline": "Full Stack Developer · Crafting thoughtful digital experiences",
   "portrait": "",
   "links": [
     {
-      "label": "PORTFOLIO",
+      "label": "BUILD",
+      "url": "https://github.com/sayantan-025/zenblocks"
+    },
+    {
+      "label": "EXPLORE",
       "url": "https://sayantanbera.vercel.app/"
     },
     {
-      "label": "LINKEDIN",
+      "label": "CONNECT",
       "url": "https://linkedin.com/in/sayantan-bera-b11300202"
-    },
-    {
-      "label": "EMAIL",
-      "url": "mailto:sayantanbera25@gmail.com"
     }
   ],
   "featured_repos": [
