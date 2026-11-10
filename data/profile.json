@@ -1,0 +1,29 @@
+{
+  "name": "Sayantan Bera",
+  "tagline": "Full Stack Web Developer · Building ZenBlocks UI Library · React / Next.js",
+  "portrait": "",
+  "links": [
+    {
+      "label": "PORTFOLIO",
+      "url": "https://sayantanbera.vercel.app/"
+    },
+    {
+      "label": "LINKEDIN",
+      "url": "https://linkedin.com/in/sayantan-bera-b11300202"
+    },
+    {
+      "label": "EMAIL",
+      "url": "mailto:sayantanbera25@gmail.com"
+    }
+  ],
+  "featured_repos": [],
+  "contributions": {
+    "months": {},
+    "days": [],
+    "total": 0,
+    "active_days": 0,
+    "longest_streak": 0,
+    "busiest_day": "—",
+    "busiest_count": 0
+  }
+}
