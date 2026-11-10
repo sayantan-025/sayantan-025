@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="960" height="174" viewBox="0 0 960 174">
+    <style>  
+      @keyframes rise { from {opacity:0;transform:translateY(22px)} to {opacity:1;transform:translateY(0)} }
+      .card-content {opacity:0;animation:rise .8s cubic-bezier(.2,.7,.2,1) 1.02s forwards}
+      @media (prefers-reduced-motion:reduce) { *,*::before,*::after {animation:none!important;transition:none!important;opacity:1!important;transform:none!important} } text{font-family:Amiamie,Arial,sans-serif} .muted{fill:#e5e5e0;opacity:.68}</style>
+    <rect width="100%" height="100%" rx="28" fill="#e5e5e0"/><rect x="2" y="2" width="956" height="170" rx="26" fill="none" stroke="#8b8b73" stroke-opacity=".45"/>
+    <g class="card-content"><text x="48" y="58" font-size="13" fill="#8b8b73" letter-spacing="3">FEATURED REPOSITORY</text><a xlink:href="https://github.com/sayantan-025/zenblocks"><text x="48" y="101" font-size="30" fill="#393632">zenblocks</text></a><text x="48" y="132" font-size="16" fill="#393632">A project in progress</text><text x="850" y="100" font-size="17" text-anchor="end" fill="#cfa355">★ 12</text></g></svg>

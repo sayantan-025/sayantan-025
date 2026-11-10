@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="960" height="132" viewBox="0 0 960 132">
+    <style>  
+      @keyframes rise { from {opacity:0;transform:translateY(22px)} to {opacity:1;transform:translateY(0)} }
+      .card-content {opacity:0;animation:rise .8s cubic-bezier(.2,.7,.2,1) 0.18s forwards}
+      @media (prefers-reduced-motion:reduce) { *,*::before,*::after {animation:none!important;transition:none!important;opacity:1!important;transform:none!important} } text{font-family:Amiamie,Arial,sans-serif} .muted{fill:#e5e5e0;opacity:.68}</style>
+    <rect width="100%" height="100%" rx="28" fill="#e5e5e0"/><rect x="2" y="2" width="956" height="128" rx="26" fill="none" stroke="#8b8b73" stroke-opacity=".45"/>
+    <g class="card-content"><a xlink:href="https://sayantanbera.vercel.app/"><rect x="20.0" y="20" width="290" height="92" rx="20" fill="#393632"/><text x="165.0" y="76" text-anchor="middle" font-size="22" fill="#e5e5e0">PORTFOLIO</text></a><a xlink:href="https://linkedin.com/in/sayantan-bera-b11300202"><rect x="335.0" y="20" width="290" height="92" rx="20" fill="#393632"/><text x="480.0" y="76" text-anchor="middle" font-size="22" fill="#e5e5e0">LINKEDIN</text></a><a xlink:href="mailto:sayantanbera25@gmail.com"><rect x="650.0" y="20" width="290" height="92" rx="20" fill="#393632"/><text x="795.0" y="76" text-anchor="middle" font-size="22" fill="#e5e5e0">EMAIL</text></a></g></svg>
